@@ -3,7 +3,7 @@ import './reset.scss'
 
 
 
-class BasicCursor {
+class SmoothedCursor {
  
 
   constructor(elem = undefined, position = undefined, hoverElemsSelector = undefined) {
@@ -112,4 +112,4 @@ class BasicCursor {
 }
 
 // If mobile device, don't use cursor
-new BasicCursor()
+new SmoothedCursor()
