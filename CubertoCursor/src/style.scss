@@ -1,0 +1,247 @@
+/// Utility
+
+#content{
+  width: 100%;
+  height: 100%;
+ 
+}
+
+#container{
+  width: 100%;
+  height: 100vh;
+}
+
+  button{
+    background-color: transparent;
+    font-size: 12px;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    transition: all .2s ease-out;
+    padding: 50px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    border: none;
+    
+    cursor: pointer;
+
+    .btn-inner{
+      border: 1px solid #fff;
+      border-radius: 200px;
+      font-size: 12px;
+      color: #fff;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      >span:nth-child(1){
+        width: 20px;
+        height: 1px;
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      >span:nth-child(2){
+        width: 20px;
+        height: 1px;
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+    &.active{
+    
+        transform: translate(-50%, -50%) rotate(45deg);
+    
+    }
+  }
+
+
+/// Utility
+
+#container{
+  background-color: #222;
+}
+
+
+$mf-color-base:#000 !default;
+$mf-color-text:#fff !default;
+
+.mf-cursor {
+    $root:&;
+
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:250;
+
+    direction:ltr;
+    contain:layout style size;
+    pointer-events:none;
+
+    transition:opacity 0.3s, color 0.4s;
+
+    
+
+    &:before {
+        content:"";
+        position:absolute;
+        top:-24px;
+        left:-24px;
+        display:block;
+        width:48px;
+        height:48px;
+        transform:scale(0.5);
+
+
+        background:currentColor;
+        border-radius:50%;
+        border: 1px solid currentColor;
+
+
+        transition:transform 0.25s ease-in-out, opacity 0.1s, background-color 0.2s 0.1s;
+    }
+
+    &.-inverse {
+        color:invert($mf-color-base);
+    }
+
+    &.-exclusion {
+        @supports (mix-blend-mode:exclusion) {
+            mix-blend-mode:exclusion;
+
+            &:before {
+                background:invert($mf-color-base);
+            }
+        }
+    }
+
+    &.-active{
+      &:before {
+        transform:scale(1.5);
+      }
+    }
+
+    &.-pointer {
+        &:before {
+            transform:scale(2);
+            transform:scale(2);
+            background-color: transparent;
+        }
+    }
+    &.-opaque{
+      &:before {
+        background-color: transparent;
+      }
+    }
+   
+
+    &.-text {
+        &:before {
+            opacity:0.85;
+            transform:scale(1.7);
+        }
+
+        &.-active:before {
+            transform:scale(1.6);
+            transition-duration:0.2s;
+        }
+    }
+
+    &.-icon {
+        &:before {
+            transform:scale(1.5);
+        }
+
+        &.-active:before {
+            transform:scale(1.4);
+        }
+    }
+
+    &.-hidden {
+        &:before {
+            transform:scale(0);
+        }
+    }
+
+    &-text {
+        position:absolute;
+        top:-18px;
+        left:-18px;
+        width:36px;
+        height:36px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        transform:scale(0) rotate(10deg);
+
+        opacity:0;
+        color:$mf-color-text;
+
+        font-size:16px;
+        line-height:20px;
+        text-align:center;
+
+        transition:opacity 0.4s, transform 0.3s;
+
+        #{$root}.-text &, #{$root}.-icon & {
+            opacity:1;
+            transform:scale(1);
+        }
+    }
+
+    &-media {
+        position:absolute;
+        width:400px;
+        height:400px;
+        margin:(-400px * 0.5) 0 0 (-400px * 0.5);
+
+        img, video {
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%, -50%);
+            border-radius:50%;
+
+            @supports (object-fit:cover) {
+                position:static;
+                width:100%;
+                height:100%;
+                object-fit:cover;
+                transform:translateZ(0);
+            }
+        }
+
+        &-box {
+            position:relative;
+            width:100%;
+            height:100%;
+            overflow:hidden;
+            transform:scale(0) translateZ(0);
+            padding:1px;
+
+            opacity:0;
+            border-radius:50%;
+
+            transition:transform 0.35s, opacity 0.2s 0.2s;
+
+            #{$root}.-media & {
+                opacity:1;
+                transform:scale(0.696);
+                transition-duration:0.4s, 0.4s;
+                transition-delay:0s, 0s;
+            }
+        }
+    }
+}
