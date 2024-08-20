@@ -24,7 +24,7 @@ class SmoothedCursor {
 
     this.hoverElems = [];
 
-    window.BasicCursor = this;
+    window.SmoothedCursor = this;
     
     this.init()
   }
